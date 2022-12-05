@@ -1,0 +1,15 @@
+Virtualization is one of the great deal of advancements over the several decades in the IT space, that has immensely revolutionized the technology industry. Under the technology of virtualization, Linux kernel has advanced such that virtualization is built into it (especially the Ubuntu distribution of the Linux Operating System). Therefore, it takes only some installation of dependency packages to setup virtual machine. 
+
+What we want to do here is to coherently outline the steps taken to setup this awesome technology (virtualization) that has changed the way data centers are operated and maintained. 
+
+VM setup
+
+We want to skip the system configuration specification requirements and rather would move forward to checking if the system supports virtualization or not. 
+
+To check if your intended Linux system supports virtualization, run the following command:
+egrep -c ‘(vmx | svm) ‘ /proc/cpuinfo
+
+If the output is 0, then the system doesn’t support virtualization while output of 1 or more value means it supports virtualization. 
+
+In the hindsight, you could enable virtualization extension by booting into the system BIOS in-case this feature was disabled as usually the case with systems by manufacturer. 
+
