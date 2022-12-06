@@ -2,7 +2,9 @@ Virtualization is one of the great deal of advancements over the several decades
 
 What we want to do here is to coherently outline the steps taken to setup this awesome technology (virtualization) that has changed the way data centers are operated and maintained. 
 
-VM setup
+Kernel-based Virtual Machine (KVM) setup
+
+This tutorial would be carried out only on a Ubuntu Linux System and only one method would be followed.
 
 We want to skip the system configuration specification requirements and rather would move forward to checking if the system supports virtualization or not. 
 
@@ -13,3 +15,29 @@ If the output is 0, then the system doesn’t support virtualization while outpu
 
 In the hindsight, you could enable virtualization extension by booting into the system BIOS in-case this feature was disabled as usually the case with systems by manufacturer. 
 
+
+# chown root:kvm /vm_storage
+
+# chmod  775 /vm_storage
+
+# usermod -aG kvm [user]
+
+# apt install bridge-utils qemu-kvm qemu-system libvirt-daemon-system
+
+# systemctl status libvirtd.service
+
+It is advised to duplicate this configuration file while we make some changes to the original file.
+
+Search for the following line:
+unix_sock_group = “libvirtd”
+
+Change the above line to this:
+unix_sock_group = “kvm”  
+
+This is the group that was added previously.
+
+Search for the following line and change also:
+unix_sock_ro_perms = “0777”
+
+Change the line above to the following:
+unix_sock_perms = “0770”
